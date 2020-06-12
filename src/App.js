@@ -14,6 +14,16 @@ function App(props){
       <div>Age: <span>{props.Age}</span></div>
       <button onClick={props.onAgeUp }>Age Up </button>
       <button onClick={props.onAgeDown}>Age Down</button>
+      <ul>
+          {
+            props.history.map((arr) => 
+            (<li key= {arr.id} onClick={()=> props.onAgeDel(arr.id)}> 
+            {arr.Age}  
+              
+              </li>))  
+          }
+      
+      </ul>
   
       <ChildComponent title={title} changeTitle= {() => changeTitle("NewTitle")} />
     </div>
@@ -23,7 +33,8 @@ function App(props){
 // map to props; basically gets Age from the store after we connect it to store using connect
 const mapStateToProps = (state) => {
   return {
-    Age: state.Age
+    Age: state.Age,
+    history: state.history
   }
 }
 
@@ -31,7 +42,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps= (dispatch) => {
   return {
     onAgeUp : () => dispatch({type: 'AGE_UP'}),
-    onAgeDown: () => dispatch({type: 'AGE_DOWN'})
+    onAgeDown: () => dispatch({type: 'AGE_DOWN'}),
+    onAgeDel: (id) => dispatch({type: 'AGE_DEL', payload: id})
   }
 }
 
