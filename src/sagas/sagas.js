@@ -1,20 +1,23 @@
 import {put, takeEvery, delay, takeLatest} from 'redux-saga/effects';
+import {ageUp, ageDown, ageDelete} from '../Actions/child.actions';
+
 
 console.log("sagas ran")
 
-function* ageUpAsync(){
+function* ageUpAsync(props){
 // put is used to dispatch another action
-    yield put({type: 'AGE_UP_ASYNC', payload: 1});
+    // yield put({type: 'AGE_UP_ASYNC', payload: 1});
+    yield put(ageUp(props.payload));
 }
 
-function* ageDownAsync(){
+function* ageDownAsync(props){
     // put is used to dispatch another action
-        yield put({type: 'AGE_DOWN_ASYNC', payload: 1});
+        yield put(ageDown(props.payload));
     }
 function* ageDeleteAsyc(props){
-    console.log("props in delete",props)
+    console.log("props in delete",props);
     try{
-        yield put({type: 'AGE_DELETE_ASYNC', payload: props.payload});
+        yield put(ageDelete(props.payload));
     }
     catch(err){
         console.log("error",err);

@@ -2,7 +2,7 @@
 // reducer then updates the value based on action ran
 const initialState= {
     Age:21,
-    history: []
+    ageArr: []
 }
 const reducer= (state=initialState, action) => {
     console.log("action", action)
@@ -12,14 +12,14 @@ const reducer= (state=initialState, action) => {
             return {
                 ...state,
                 Age: state.Age + action.payload, 
-                history: state.history.concat({id:Math.random(),Age: state.Age + action.payload})
+                ageArr: state.ageArr.concat({id:Math.random(),Age: state.Age + action.payload})
             }
             break;
         case "AGE_DOWN_ASYNC":
             return {
                 ...state, 
                 Age: state.Age - action.payload,
-                history: state.history.concat({id: Math.random(),Age: state.Age - action.payload})
+                ageArr: state.ageArr.concat({id: Math.random(),Age: state.Age - action.payload})
 
             }
             break;  
@@ -27,7 +27,7 @@ const reducer= (state=initialState, action) => {
         case "AGE_DELETE_ASYNC":
             return {
                 ...state, 
-                history: state.history.filter((arr) => arr.id !== action.payload)
+                ageArr: state.ageArr.filter((arr) => arr.id !== action.payload)
 } 
     }
     return state;
