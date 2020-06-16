@@ -2,11 +2,12 @@ import {put, takeEvery, delay, takeLatest} from 'redux-saga/effects';
 import {ageUp, ageDown, ageDelete} from '../Actions/child.actions';
 
 
-console.log("sagas ran")
+
 
 function* ageUpAsync(props){
 // put is used to dispatch another action
     // yield put({type: 'AGE_UP_ASYNC', payload: 1});
+    console.log("sagas ran")
     yield put(ageUp(props.payload));
 }
 
@@ -25,7 +26,8 @@ function* ageDeleteAsyc(props){
     }
 
 }
-export function* watchAgeUp(){
+export function* watchAgeUp(props){
+    // console.log("watching", props)
     // takeEvery watches for every action AGE_UP dispatched and run the ageUpAsync function
     // so here we are catching 'AGE_UP' function and it will never reach reducer, but another action dispatched by ageUpAsync will reach reducer now
     yield takeLatest('AGE_UP', ageUpAsync);

@@ -1,12 +1,15 @@
-
-import React from 'react'
+import { useState } from 'react';
+import React from 'react';
 
 
 const ChildComponent = (props) => {
-    console.log("props in child", props)
+    
+    const [title, changeTitle] = useState("oldTitle");
+   
     return(
         <div>
-            <button onClick={props.changeTitle}>{props.title}</button>
+            <p>Welcome to child compnenet, Click button below</p>
+            <button onClick={ () => changeTitle("NewTitle")} > {title} </button>
         </div>
     )
 }
